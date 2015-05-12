@@ -6,13 +6,17 @@ Imported from http://protobuf-socket-rpc.googlecode.com/svn/trunk/
 
 Google's protocol buffer library makes writing rpc services easy, but it does not contain a rpc implementation. The transport details are left up to the user to implement.
 
-This is a simple tcp/ip socket based rpc implementation in java and python for people who want a simple implementation of their protobuf rpc services.
+This is a simple tcp/ip socket based rpc implementation in c++, java and python for people who want a simple implementation of their protobuf rpc services.
 
 See:
 * http://code.google.com/p/protobuf/
 * http://code.google.com/apis/protocolbuffers/docs/overview.html
 
 ## Download/Installation
+
+### C++
+
+You can find the sources in cpp. You will also need google protobuf sources. You can get it from https://github.com/google/protobuf/releases
 
 ### Java
 
@@ -35,6 +39,54 @@ Please join the [discussion group](http://groups.google.com/group/protobuf-socke
 Have questions or want to contribute to this project?
 
 Please post a message on the discussion group, http://groups.google.com/group/protobuf-socket-rpc
+
+## C++ Usage
+
+### Server-side
+
+Not yet implemented
+
+### Client-side
+
+```
+
+MyResponse *response;
+bool callbackFired = false;
+
+// my callback to handle response
+void myCallback() {
+  // handle response
+  callbackFired = true;
+}
+
+try {
+        RpcConnectionFactory *connectionFactory = new SocketRpcConnectionFactory("127.0.0.1", PORT, true);
+        RpcChannel *channel = new RpcChannelImpl(connectionFactory);
+    
+        RpcController *rpcController = new SocketRpcController();
+        MyService_Stub *service = new MyService_Stub(channel); // your rpc interface
+    
+        MyRequest *request = new MyRequest(); // your request
+        response = new MyResponse(); // your response prototype
+        
+        service->myMethod(rpcController, request, response, NewCallback(&myCallback));
+        
+        // wait for callback fired (blocking approach)
+        while (!callbackFired);
+        
+        delete connectionFactory;
+        delete channel;
+        delete rpcController;
+        delete request;
+        delete response;
+        delete service;
+    } catch (ServiceException &e) {
+        printf("Error: %s", e.what());
+        return -1;
+    }
+    
+    return 0;
+```
 
 ## Java Usage 
 
