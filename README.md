@@ -47,8 +47,8 @@ Please post a message on the discussion group, http://groups.google.com/group/pr
 ```
 ServerRpcConnectionFactory *rpcConnectionFactory = new SocketServerRpcConnectionFactory(PORT, true);
 RpcServer *server = new RpcServer(rpcConnectionFactory, true);
-TestInstallService *serverService = new TestInstallService(); // your service impl
-server->registerService(serverService);
+MyService *service = new MyService(); // your service impl
+server->registerService(service);
 server->startServer();
 ```
 
