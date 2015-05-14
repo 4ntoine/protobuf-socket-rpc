@@ -14,18 +14,28 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 
-protobuf::socketrpc::Socket::Socket(std::string host, int port)
-{
-    memset(&address, 0, sizeof(address));
-    address.sin_family = AF_INET;
-    address.sin_port = htons(port);
-    address.sin_addr.s_addr = inet_addr(host.c_str());
-    address.sin_port = htons(port);
+protobuf::socketrpc::Socket::~Socket() {
+    if (!isClosed())
+        close();
     
-    this->sd = socket(AF_INET, SOCK_STREAM, 0);
-    if (::connect(sd, (struct sockaddr*)&address, sizeof(address)) != 0) {
-        throw IOException("Connection refused");
+    // TODO : fix
+    
+    /*
+    if (address != NULL) {
+        delete address;
+        address = NULL;
     }
+     */
+}
+
+protobuf::socketrpc::Socket::Socket() {
+    // nothing
+}
+
+protobuf::socketrpc::Socket::Socket(int sd, struct sockaddr_in* address)
+{
+    this->sd = sd;
+    this->address = address;
 }
 
 int protobuf::socketrpc::Socket::write(const void *buffer, int size) {
@@ -52,7 +62,7 @@ int protobuf::socketrpc::Socket::read(void *buffer, int size) {
 }
 
 bool protobuf::socketrpc::Socket::isClosed() const {
-    return sd > -1;
+    return sd < 0;
 }
 
 void protobuf::socketrpc::Socket::close() {

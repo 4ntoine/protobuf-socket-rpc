@@ -24,9 +24,6 @@ protobuf::socketrpc::SocketConnection::SocketConnection(Socket *socket, bool del
 }
 
 protobuf::socketrpc::SocketConnection::~SocketConnection() {
-    if (!socket->isClosed())
-        socket->close();
-    
     delete socket;
     delete buffer;
 }
@@ -49,7 +46,7 @@ void protobuf::socketrpc::SocketConnection::sendProtoMessage(google::protobuf::M
         // get coded buffer
         void *coded_buffer;
         int unwritten_size;
-        bool got_direct_buffer = codedOutput.GetDirectBufferPointer(&coded_buffer, &unwritten_size);
+        codedOutput.GetDirectBufferPointer(&coded_buffer, &unwritten_size);
         int coded_size = BUFFER_SIZE - unwritten_size;
         socket->write(buffer, coded_size);
         return;

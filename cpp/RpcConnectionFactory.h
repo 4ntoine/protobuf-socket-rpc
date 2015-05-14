@@ -29,6 +29,7 @@ namespace protobuf {
             
         public:
             virtual Connection* createConnection() = 0;
+            virtual ~RpcConnectionFactory() {};
             
         };
         

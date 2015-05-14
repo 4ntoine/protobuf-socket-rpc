@@ -22,7 +22,8 @@ namespace protobuf {
         class Socket {
             
         public:
-            Socket(std::string host, int port); // opens socket immediately
+            Socket(int sd, struct sockaddr_in* address);
+            virtual ~Socket();
             
             int write(const void *buffer, int size);
             int read(void *buffer, int size);
@@ -31,9 +32,10 @@ namespace protobuf {
             
             int getFileDescriptor() const;
             
-        private:
+        protected:
+            Socket();
             int sd;
-            struct sockaddr_in address;
+            struct sockaddr_in *address = NULL;
             
         };
         
