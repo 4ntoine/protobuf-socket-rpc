@@ -44,7 +44,13 @@ Please post a message on the discussion group, http://groups.google.com/group/pr
 
 ### Server-side
 
-Not yet implemented
+```
+ServerRpcConnectionFactory *rpcConnectionFactory = new SocketServerRpcConnectionFactory(PORT, true);
+RpcServer *server = new RpcServer(rpcConnectionFactory, true);
+TestInstallService *serverService = new TestInstallService(); // your service impl
+server->registerService(serverService);
+server->startServer();
+```
 
 ### Client-side
 
