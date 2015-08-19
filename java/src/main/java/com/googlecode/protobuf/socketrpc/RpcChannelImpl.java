@@ -241,6 +241,6 @@ class RpcChannelImpl implements RpcChannel, BlockingRpcChannel {
       LOG.log(Level.WARNING, reason + ": " + msg, e);
     }
     socketController.setFailed(msg, reason);
-    throw new ServiceException(msg);
+    throw new RpcServiceException(msg, reason);
   }
 }

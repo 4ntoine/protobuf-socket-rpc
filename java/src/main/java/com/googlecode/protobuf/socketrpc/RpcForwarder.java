@@ -156,6 +156,8 @@ class RpcForwarder {
       return createRpcResponse(response, true, socketController);
     } catch (ServiceException e) {
       throw new RpcException(ErrorReason.RPC_FAILED, e.getMessage(), e);
+    } catch (RpcSecurityException e) {
+      throw new RpcException(ErrorReason.SECURITY_ERROR, e.getMessage(), e);
     } catch (RuntimeException e) {
       throw new RpcException(ErrorReason.RPC_ERROR,
           "Error running method " + method.getFullName(), e);
@@ -176,9 +178,11 @@ class RpcForwarder {
     // Call method
     try {
       service.callMethod(method, socketController, request, callback);
+    } catch (RpcSecurityException e) {
+        throw new RpcException(ErrorReason.SECURITY_ERROR, e.getMessage(), e);
     } catch (RuntimeException e) {
-      throw new RpcException(ErrorReason.RPC_ERROR,
-          "Error running method " + method.getFullName(), e);
+        throw new RpcException(ErrorReason.RPC_ERROR,
+          "Runtime exception: error running method " + method.getFullName(), e);
     }
   }
 
