@@ -34,7 +34,7 @@ import javax.net.ServerSocketFactory;
  *
  * @author Shardul Deo
  */
-class SocketServerRpcConnectionFactory implements ServerRpcConnectionFactory {
+public class SocketServerRpcConnectionFactory implements ServerRpcConnectionFactory {
 
   private static final Logger LOG =
       Logger.getLogger(SocketServerRpcConnectionFactory.class.getName());
