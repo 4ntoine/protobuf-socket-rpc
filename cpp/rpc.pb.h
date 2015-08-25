@@ -45,6 +45,7 @@ enum ErrorReason {
   METHOD_NOT_FOUND = 3,
   RPC_ERROR = 4,
   RPC_FAILED = 5,
+  SECURITY_ERROR = 10,
   INVALID_REQUEST_PROTO = 6,
   BAD_RESPONSE_PROTO = 7,
   UNKNOWN_HOST = 8,
@@ -52,7 +53,7 @@ enum ErrorReason {
 };
 bool ErrorReason_IsValid(int value);
 const ErrorReason ErrorReason_MIN = BAD_REQUEST_DATA;
-const ErrorReason ErrorReason_MAX = IO_ERROR;
+const ErrorReason ErrorReason_MAX = SECURITY_ERROR;
 const int ErrorReason_ARRAYSIZE = ErrorReason_MAX + 1;
 
 const ::google::protobuf::EnumDescriptor* ErrorReason_descriptor();

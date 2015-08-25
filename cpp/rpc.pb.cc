@@ -114,13 +114,14 @@ void protobuf_AddDesc_rpc_2eproto() {
     "e\022\026\n\016response_proto\030\001 \001(\014\022\r\n\005error\030\002 \001(\t"
     "\022\027\n\010callback\030\003 \001(\010:\005false\0225\n\014error_reaso"
     "n\030\004 \001(\0162\037.protobuf.socketrpc.ErrorReason"
-    "*\331\001\n\013ErrorReason\022\024\n\020BAD_REQUEST_DATA\020\000\022\025"
+    "*\355\001\n\013ErrorReason\022\024\n\020BAD_REQUEST_DATA\020\000\022\025"
     "\n\021BAD_REQUEST_PROTO\020\001\022\025\n\021SERVICE_NOT_FOU"
     "ND\020\002\022\024\n\020METHOD_NOT_FOUND\020\003\022\r\n\tRPC_ERROR\020"
-    "\004\022\016\n\nRPC_FAILED\020\005\022\031\n\025INVALID_REQUEST_PRO"
-    "TO\020\006\022\026\n\022BAD_RESPONSE_PROTO\020\007\022\020\n\014UNKNOWN_"
-    "HOST\020\010\022\014\n\010IO_ERROR\020\tB4\n!com.googlecode.p"
-    "rotobuf.socketrpcB\017SocketRpcProtos", 514);
+    "\004\022\016\n\nRPC_FAILED\020\005\022\022\n\016SECURITY_ERROR\020\n\022\031\n"
+    "\025INVALID_REQUEST_PROTO\020\006\022\026\n\022BAD_RESPONSE"
+    "_PROTO\020\007\022\020\n\014UNKNOWN_HOST\020\010\022\014\n\010IO_ERROR\020\t"
+    "B4\n!com.googlecode.protobuf.socketrpcB\017S"
+    "ocketRpcProtos", 534);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "rpc.proto", &protobuf_RegisterTypes);
   Request::default_instance_ = new Request();
@@ -152,6 +153,7 @@ bool ErrorReason_IsValid(int value) {
     case 7:
     case 8:
     case 9:
+    case 10:
       return true;
     default:
       return false;

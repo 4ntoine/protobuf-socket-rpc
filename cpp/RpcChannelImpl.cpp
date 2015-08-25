@@ -22,7 +22,7 @@ protobuf::socketrpc::RpcChannelImpl::RpcChannelImpl(RpcConnectionFactory *connec
 
 void protobuf::socketrpc::RpcChannelImpl::handleError(protobuf::socketrpc::SocketRpcController *controller, ErrorReason reason, std::string message) {
     controller->SetFailed(message, reason);
-    throw ServiceException(message);
+    throw RpcServiceException(message, reason);
 }
 
 protobuf::socketrpc::Connection* protobuf::socketrpc::RpcChannelImpl::createConnection(protobuf::socketrpc::SocketRpcController *controller) {

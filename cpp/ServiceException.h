@@ -12,10 +12,12 @@
 #include <stdio.h>
 #include <exception>
 #include <string>
+#include "rpc.pb.h"
 
 namespace protobuf {
     namespace socketrpc {
         
+        //
         class ServiceException : public std::exception {
             
         public:
@@ -25,6 +27,17 @@ namespace protobuf {
             
         private:
             std::string _message;
+        };
+        
+        // advanced 'ServiceException' with 'reason'
+        class RpcServiceException : public ServiceException {
+            
+        public:
+            RpcServiceException(std::string message, ErrorReason reason);
+            ErrorReason reason();
+            
+        private:
+            ErrorReason _reason;
         };
         
     } // namespace
