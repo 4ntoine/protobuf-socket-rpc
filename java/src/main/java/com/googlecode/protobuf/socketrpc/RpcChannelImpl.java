@@ -44,7 +44,7 @@ import com.googlecode.protobuf.socketrpc.SocketRpcProtos.Response;
  *
  * @author Shardul Deo
  */
-class RpcChannelImpl implements RpcChannel, BlockingRpcChannel {
+public class RpcChannelImpl implements RpcChannel, BlockingRpcChannel {
 
   private final static Logger LOG =
       Logger.getLogger(RpcChannelImpl.class.getName());

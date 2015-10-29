@@ -34,7 +34,7 @@ import javax.net.SocketFactory;
  *
  * @author Shardul Deo
  */
-class SocketRpcConnectionFactory implements RpcConnectionFactory {
+public class SocketRpcConnectionFactory implements RpcConnectionFactory {
 
   private final String host;
   private final int port;

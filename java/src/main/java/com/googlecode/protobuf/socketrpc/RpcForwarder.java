@@ -47,7 +47,7 @@ import com.googlecode.protobuf.socketrpc.SocketRpcProtos.Response.Builder;
  *
  * @author Shardul Deo
  */
-class RpcForwarder {
+public class RpcForwarder {
 
   private final Map<String, Service> serviceMap =
     new HashMap<String, Service>();

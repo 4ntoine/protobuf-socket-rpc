@@ -34,7 +34,7 @@ import com.googlecode.protobuf.socketrpc.RpcConnectionFactory.Connection;
  *
  * @author Shardul Deo
  */
-class PersistentConnection implements Connection {
+public class PersistentConnection implements Connection {
 
   private final boolean client;
   final Connection inner;

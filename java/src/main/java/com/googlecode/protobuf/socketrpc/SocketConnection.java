@@ -36,7 +36,7 @@ import com.googlecode.protobuf.socketrpc.RpcConnectionFactory.Connection;
  *
  * @author Shardul Deo
  */
-class SocketConnection implements Connection {
+public class SocketConnection implements Connection {
 
   private final Socket socket;
   private final OutputStream out;
