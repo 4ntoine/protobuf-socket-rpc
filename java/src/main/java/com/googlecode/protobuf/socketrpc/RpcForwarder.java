@@ -246,7 +246,7 @@ public class RpcForwarder {
   /**
    * Callback that just saves the response and the fact that it was invoked.
    */
-  static class Callback<T extends Message> implements RpcCallback<T> {
+  public static class Callback<T extends Message> implements RpcCallback<T> {
 
     private T response = null;
     private boolean invoked = false;
@@ -269,7 +269,7 @@ public class RpcForwarder {
   /**
    * Signifies error while handling RPC.
    */
-  static class RpcException extends Exception {
+  public static class RpcException extends Exception {
 
     public final ErrorReason errorReason;
     public final String msg;

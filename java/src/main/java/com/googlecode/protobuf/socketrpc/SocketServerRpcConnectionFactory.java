@@ -36,8 +36,7 @@ import javax.net.ServerSocketFactory;
  */
 public class SocketServerRpcConnectionFactory implements ServerRpcConnectionFactory {
 
-  private static final Logger LOG =
-      Logger.getLogger(SocketServerRpcConnectionFactory.class.getName());
+  private static final Logger LOG = Logger.getLogger(SecureSocketRpcConnectionFactory.class.getName());
 
   private final int port;
   private final int backlog;

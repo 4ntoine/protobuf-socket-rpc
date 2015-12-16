@@ -52,7 +52,7 @@ public class RpcChannelImpl implements RpcChannel, BlockingRpcChannel {
   private final RpcConnectionFactory connectionFactory;
   private final Executor executor;
 
-  RpcChannelImpl(RpcConnectionFactory connectionFactory, Executor executor) {
+  public RpcChannelImpl(RpcConnectionFactory connectionFactory, Executor executor) {
     this.connectionFactory = connectionFactory;
     this.executor = executor;
   }

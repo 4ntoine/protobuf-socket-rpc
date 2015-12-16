@@ -43,7 +43,7 @@ public class PersistentConnection implements Connection {
   private final Semaphore readLock = new Semaphore(1, true /* fair */);
   private final ReentrantLock writeLock = new ReentrantLock(true /* fair */);
 
-  PersistentConnection(Connection connection, boolean client) {
+  public PersistentConnection(Connection connection, boolean client) {
     this.inner = connection;
     this.client = client;
   }
@@ -69,7 +69,7 @@ public class PersistentConnection implements Connection {
    *
    * @throws IOException If acquiring read lock was interrupted.
    */
-  void acquireReadLock() throws IOException {
+  public void acquireReadLock() throws IOException {
     try {
       readLock.acquire();
     } catch (InterruptedException e) {

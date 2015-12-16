@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.googlecode.protobuf.socketrpc</groupId>
     <artifactId>protobuf-socket-rpc</artifactId>
-    <version>2.2.1</version>
+    <version>2.3</version>
     <name>protobuf socketrpc</name>
     <description>Google's protocol buffer library makes writing rpc
     services easy, but it does not contain a rpc implementation. The
@@ -13,7 +13,7 @@
     This is a simple tcp/ip socket based rpc implementation in java
     for people who want a simple implementation of their protobuf rpc
     services.</description>
-    <url>http://code.google.com/p/protobuf-socket-rpc/</url>
+    <url>https://github.com/4ntoine/protobuf-socket-rpc</url>
     <properties>
         <protobuf.version>2.6.1</protobuf.version>
     </properties>
