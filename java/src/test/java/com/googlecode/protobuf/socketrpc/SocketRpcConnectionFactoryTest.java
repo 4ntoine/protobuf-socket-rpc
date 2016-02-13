@@ -50,7 +50,7 @@ public class SocketRpcConnectionFactoryTest extends TestCase {
     super.setUp();
     socketFactory = new FakeSocketFactory();
     connectionFactory = new SocketRpcConnectionFactory("host", 8080,
-        socketFactory, true /* delimited */);
+        socketFactory, true /* delimited */, SocketRpcConnectionFactory.DEFAULT_CONNECT_TIMOUT_MS);
   }
 
   public void testCreateConnection_unknownHost() throws IOException {

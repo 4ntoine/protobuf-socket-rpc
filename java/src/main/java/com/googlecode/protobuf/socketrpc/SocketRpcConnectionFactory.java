@@ -21,6 +21,7 @@
 package com.googlecode.protobuf.socketrpc;
 
 import java.io.IOException;
+import java.net.InetSocketAddress;
 import java.net.Socket;
 
 import javax.net.SocketFactory;
@@ -39,28 +40,40 @@ public class SocketRpcConnectionFactory implements RpcConnectionFactory {
   private final String host;
   private final int port;
   private final SocketFactory socketFactory;
+  private int connectTimeoutMs;
   private final boolean delimited;
+
+  public static final int DEFAULT_CONNECT_TIMOUT_MS = 20 * 1000; // 20 seconds
+
+  /**
+   * Constructor to create sockets the given host/port.
+   */
+  public SocketRpcConnectionFactory(String host, int port, boolean delimited, int connectTimeoutMs) {
+    this(host, port, SocketFactory.getDefault(), delimited, connectTimeoutMs);
+  }
 
   /**
    * Constructor to create sockets the given host/port.
    */
   public SocketRpcConnectionFactory(String host, int port, boolean delimited) {
-    this(host, port, SocketFactory.getDefault(), delimited);
+    this(host, port, SocketFactory.getDefault(), delimited, DEFAULT_CONNECT_TIMOUT_MS);
   }
 
   // Used for testing
   SocketRpcConnectionFactory(String host, int port,
-      SocketFactory socketFactory, boolean delimited) {
+      SocketFactory socketFactory, boolean delimited, int connectTimeoutMs) {
     this.host = host;
     this.port = port;
     this.socketFactory = socketFactory;
     this.delimited = delimited;
+    this.connectTimeoutMs = connectTimeoutMs;
   }
 
   @Override
   public Connection createConnection() throws IOException {
     // Open socket
-    Socket socket = socketFactory.createSocket(host, port);
+    Socket socket = socketFactory.createSocket();
+    socket.connect(new InetSocketAddress(host, port), connectTimeoutMs);
     return new SocketConnection(socket, delimited);
   }
 }

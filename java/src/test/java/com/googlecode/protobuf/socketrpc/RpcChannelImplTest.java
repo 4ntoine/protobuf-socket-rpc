@@ -50,7 +50,7 @@ public class RpcChannelImplTest extends TestCase {
     super.setUp();
     socket = new FakeSocket(true);
     connectionFactory = new SocketRpcConnectionFactory("host", 8080,
-        new FakeSocketFactory().returnsSocket(socket), true /* delimited */);
+        new FakeSocketFactory().returnsSocket(socket), true /* delimited */, SocketRpcConnectionFactory.DEFAULT_CONNECT_TIMOUT_MS);
     rpcChannel = new RpcChannelImpl(connectionFactory,
         RpcChannels.SAME_THREAD_EXECUTOR);
   }

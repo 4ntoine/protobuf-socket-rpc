@@ -52,8 +52,13 @@ public class SocketRpcChannel extends RpcChannelImpl {
 
   // Used for testing
   SocketRpcChannel(String host, int port, SocketFactory socketFactory) {
-    super(new SocketRpcConnectionFactory(host, port, socketFactory,
-        false /* delimited */), RpcChannels.SAME_THREAD_EXECUTOR);
+    super(new SocketRpcConnectionFactory(
+        host,
+        port,
+        socketFactory,
+        false /* delimited */,
+        SocketRpcConnectionFactory.DEFAULT_CONNECT_TIMOUT_MS),
+            RpcChannels.SAME_THREAD_EXECUTOR);
   }
 
   /**
