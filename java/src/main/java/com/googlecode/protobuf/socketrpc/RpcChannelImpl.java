@@ -232,8 +232,7 @@ public class RpcChannelImpl implements RpcChannel, BlockingRpcChannel {
     }
   }
 
-  private <T> T handleError(SocketRpcController socketController,
-      ErrorReason reason, String msg, Exception e)
+  private <T> T handleError(SocketRpcController socketController, ErrorReason reason, String msg, Exception e)
       throws ServiceException {
     if (e == null) {
       LOG.log(Level.WARNING, reason + ": " + msg);
@@ -241,6 +240,10 @@ public class RpcChannelImpl implements RpcChannel, BlockingRpcChannel {
       LOG.log(Level.WARNING, reason + ": " + msg, e);
     }
     socketController.setFailed(msg, reason);
+
+    if (e != null)
+        throw new RpcServiceException(e, reason);
+
     throw new RpcServiceException(msg, reason);
   }
 }
